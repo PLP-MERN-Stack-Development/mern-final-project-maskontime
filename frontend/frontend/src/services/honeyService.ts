@@ -31,9 +31,9 @@ export const honeyService = {
     await api.delete(`/honey/${id}`);
   },
 
-  addReview: async (id: string, review: { rating: number; comment: string }): Promise<Honey> => {
+  addReview: async (id: string, review: Review): Promise<Honey> => {
+    // Now using the imported Review type
     const response = await api.post<ApiResponse<Honey>>(`/honey/${id}/reviews`, review);
     return response.data.data;
   },
 };
-

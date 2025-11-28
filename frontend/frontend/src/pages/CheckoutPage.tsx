@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Card, CardBody } from '../components/common/Card';
 import { Button } from '../components/common/Button';
@@ -20,12 +19,13 @@ export const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<CheckoutFormData>();
 
-  const onSubmit = (data: CheckoutFormData) => {
-    // Mock payment processing
-    toast.success('Order placed successfully!');
-    clearCart();
-    navigate('/');
-  };
+const onSubmit = (data: CheckoutFormData) => {
+  console.log('Checkout data:', data);  // <-- now TS sees `data` is used
+  toast.success('Order placed successfully!');
+  clearCart();
+  navigate('/');
+};
+
 
   if (items.length === 0) {
     navigate('/cart');
